@@ -2,29 +2,17 @@
 #include <fstream>
 
 int main() {
-    std::ifstream input_file;
-    std::ofstream output_file;
+    std::string user_file;
     std::string line;
-    input_file.open("input.txt");
-    output_file.open("output.txt");
-    if (input_file.is_open()){
-        while (getline(input_file, line)){
-            std::cout << line << '\n';
-        } input_file.close();
-    } else {
-        std::cout << "Unable to open file" << std::endl;
+    std::cout << "File name: ";
+    std::cin >> user_file;
+    char Array[12] = {' '};
+    std::ifstream input(user_file);
+    input.get(Array, 12);
+    std::cout << "Output : " << Array << std::endl;
+    for (int i = 0; i < sizeof(Array)/sizeof(Array[0]); i++){
+        std::cout << Array[i] << ' ';
     }
-    if (output_file.is_open()) {
-        std::string new_input;
-        output_file << "Yang Wen-li" << std::endl;
-        output_file.close();
-    }
-    if (input_file.is_open()){
-        while (getline(input_file, line)){
-            std::cout << line << '\n';
-        } input_file.close();
-    } else {
-        std::cout << "Unable to open file" << std::endl;
-    }
-    return 0;
+    std::cout << std::endl;
+    input.close();
 }
